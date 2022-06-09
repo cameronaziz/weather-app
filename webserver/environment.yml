@@ -4,6 +4,9 @@ dependencies:
 - python>=3.7
 - pip
 - pip:
+  - numpy
   - flask
   - graphene
   - flask-graphql>=2.0.1
+  - thefuzz
+  - python-Levenshtein

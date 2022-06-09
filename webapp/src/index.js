@@ -1,23 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
 // Initialize ApolloClient
 // See: https://www.apollographql.com/docs/tutorial/queries/#integrate-with-react
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { RoutingContextProvider } from './context/routing';
+import { UIContextProvider } from './context/ui';
+import generatedIntrospection from './graphql/fragments.json';
+import reportWebVitals from './reportWebVitals';
+
 const client = new ApolloClient({
   uri: '/graphql',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    possibleTypes: generatedIntrospection.possibleTypes,
+  } ),
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
-  </React.StrictMode>,
+  <ApolloProvider client={client}>
+    <RoutingContextProvider>
+      <UIContextProvider>
+        <App />
+      </UIContextProvider>
+    </RoutingContextProvider>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 

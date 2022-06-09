@@ -18,6 +18,7 @@ webserver/start.sh
 2. Launch the web app that grabs data from the server to visualize interactively.
 ```bash
 cd webapp
+npm install
 npm start
 ```
 
