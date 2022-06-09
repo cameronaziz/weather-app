@@ -1,0 +1,9 @@
+# conda env for weatherviz
+name: weatherviz_env
+dependencies:
+- python>=3.7
+- pip
+- pip:
+  - flask
+  - graphene
+  - flask-graphql>=2.0.1
